@@ -11,17 +11,31 @@
 // and then send it write stream
 // here we need two stream 
 //
+// const fs = require('fs');
+// const readStream = fs.createReadStream('streamExample.txt');
+// const writeStream = fs.createWriteStream('streamExample3.txt.gz');
+// readStream.pipe(writeStream);
+//
 // Pipe Chaining
 // For Chaining of pipe we need another module which is zlib
 // for compression and then we need to create transform stream:
 // It get the data and manipulate to something else in our case
 // it will compress the data.
+//
+// const fs = require('fs');
+// const zlib = require('zlib');
+// const gzip = zlib.createGzip();
+// const readStream = fs.createReadStream('streamExample.txt');
+// const writeStream = fs.createWriteStream('streamExample3.txt.gz');
+// readStream.pipe(gzip).pipe(writeStream);
 
+// unzip example
 const fs = require('fs');
 const zlib = require('zlib');
-const gzip = zlib.createGzip();
-const readStream = fs.createReadStream('streamExample.txt');
-const writeStream = fs.createWriteStream('streamExample3.txt.gz');
+const gzip = zlib.createGunzip();
+const readStream = fs.createReadStream('streamExample3.txt.gz');
+const writeStream = fs.createWriteStream('streamExampleUncompress.txt');
 readStream.pipe(gzip).pipe(writeStream);
+
 
 // - end -
